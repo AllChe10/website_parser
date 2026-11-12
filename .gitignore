@@ -18,5 +18,5 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Generated output (uncomment if you don't want to track results)
-# result.csv
+# Generated parser output
+result.csv
