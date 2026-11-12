@@ -1,8 +1,10 @@
 # Books to Scrape — парсер каталога книг
 
+[![Tests](https://github.com/AllChe10/website_parser/actions/workflows/tests.yml/badge.svg)](https://github.com/AllChe10/website_parser/actions/workflows/tests.yml)
+
 Учебный Python-проект для сбора данных из открытого демонстрационного каталога [Books to Scrape](https://books.toscrape.com/).
 
-## Что умеет
+## Возможности
 
 - Загружает страницы каталога с помощью `requests`.
 - Разбирает HTML через `BeautifulSoup`.
@@ -10,7 +12,8 @@
 - Переходит по страницам каталога с ограничением количества страниц.
 - Повторяет запрос до трёх раз при сетевой ошибке.
 - Сохраняет результаты в `result.csv`.
-- Проверяет основные функции с помощью `pytest`.
+- Проверяет парсинг, загрузку страниц и обработку ошибок с помощью `pytest`.
+- Запускает тесты в GitHub Actions при push и pull request.
 
 ## Технологии
 
@@ -19,58 +22,43 @@
 - Beautiful Soup 4
 - csv из стандартной библиотеки
 - pytest
+- GitHub Actions
 
 ## Установка
 
-```bash
-git clone https://github.com/Perdin10/website_parser.git
-cd website_parser
-python -m venv .venv
-```
-
-Активируйте виртуальное окружение:
-
-**Windows PowerShell**
 ```powershell
-.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux**
-```bash
-source .venv/bin/activate
-```
-
-Установите зависимости:
-
-```bash
-python -m pip install -r requirements.txt
+git clone https://github.com/AllChe10/website_parser.git
+Set-Location .\website_parser
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
 ## Запуск парсера
 
-```bash
-python main.py
+```powershell
+.\.venv\Scripts\python.exe main.py
 ```
 
-По умолчанию парсер обрабатывает до четырёх страниц. Результат сохраняется в `result.csv` в текущей рабочей директории.
+По умолчанию парсер обрабатывает до четырёх страниц. Результат сохраняется в `result.csv` в текущей папке.
 
 ## Запуск тестов
 
-```bash
-python -m pytest -v
+```powershell
+.\.venv\Scripts\python.exe -m pytest -v
 ```
 
 ## Структура проекта
 
 ```text
 website_parser/
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+├── .gitignore
 ├── main.py
-├── test_parser.py
 ├── requirements.txt
-├── result.csv
+├── test_parser.py
 └── README.md
 ```
 
-## Примечание
-
-Проект создан в учебных целях. Используется демонстрационный сайт Books to Scrape, предназначенный для практики парсинга.
+Проект использует демонстрационный сайт Books to Scrape, предназначенный для практики парсинга. Файл `result.csv` создаётся при запуске и не хранится в репозитории.
